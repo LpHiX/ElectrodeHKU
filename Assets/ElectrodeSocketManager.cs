@@ -9,7 +9,7 @@ public class ElectrodeSocketManager : MonoBehaviour
     [SerializeField]
     private SocketScript[] correctSockets = new SocketScript[6];
     private List<SocketScript> allSockets = new List<SocketScript>();
-    private int[] placedSockets = { 0, 0, 0, 0, 0, 0 };
+    public int[] placedSockets = { 0, 0, 0, 0, 0, 0 };
     // Start is called before the first frame update
 
     public bool debugSockets(SocketScript socket)
@@ -25,7 +25,7 @@ public class ElectrodeSocketManager : MonoBehaviour
     }
     private void enterMethods(SelectEnterEventArgs arg0)
     {
-        SocketScript socketScript = arg0.interactableObject.transform.gameObject.GetComponent<SocketScript>();
+        SocketScript socketScript = arg0.interactorObject.transform.gameObject.GetComponent<SocketScript>();
         int check = Array.IndexOf(correctSockets, socketScript);
         if(check > -1)
         {
@@ -39,21 +39,11 @@ public class ElectrodeSocketManager : MonoBehaviour
     }
     private void exitMethods(SelectExitEventArgs arg0)
     {
-        SocketScript socketScript = arg0.interactableObject.transform.gameObject.GetComponent<SocketScript>();
+        SocketScript socketScript = arg0.interactorObject.transform.gameObject.GetComponent<SocketScript>();
         int check = Array.IndexOf(correctSockets, socketScript);
         if (check > -1)
         {
             placedSockets[check] = 0;
         }
     }
-    /*
-    private void Update()
-    {
-        int sum = 0;
-        foreach (int socket in placedSockets)
-        {
-            sum += socket;
-        }
-        Debug.Log(sum);
-    }*/
 }

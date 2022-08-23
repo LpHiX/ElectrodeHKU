@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7822776349845022480}
   - component: {fileID: 4755439796644705415}
   - component: {fileID: 6454338515281574123}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visualizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b4f185fee09cb3e4a84900f9046f0315, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1119331263873607031}
   - component: {fileID: 2428042838886313220}
   - component: {fileID: 7249653483641209294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ElectrodeSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,8 +230,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ShowInteractableHoverMeshes: 1
-  m_InteractableHoverMeshMaterial: {fileID: 0}
-  m_InteractableCantHoverMeshMaterial: {fileID: 0}
+  m_InteractableHoverMeshMaterial: {fileID: 2100000, guid: 75682a6a359442544a2c3bc8b78851a5, type: 2}
+  m_InteractableCantHoverMeshMaterial: {fileID: 2100000, guid: e4386db3926c3744680f3f6c2e1fc7d2, type: 2}
   m_SocketActive: 1
   m_InteractableHoverScale: 1
   m_RecycleDelayTime: 1
@@ -249,3 +249,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualizer: {fileID: 733909683552563958}
   electrodeSocketManager: {fileID: 0}
+  socketShowScript: {fileID: 0}

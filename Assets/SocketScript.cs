@@ -9,18 +9,26 @@ public class SocketScript : MonoBehaviour
     private GameObject visualizer;
     [SerializeField]
     private ElectrodeSocketManager electrodeSocketManager;
+    [SerializeField]
+    private SocketShowScript socketShowScript;
     void Start()
     {
-        if (!electrodeSocketManager.debugSockets(this))
-        {
-            visualizer.SetActive(false);
-        }
+        visualizer.SetActive(false);
         electrodeSocketManager.initializeSocket(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.gameObject.layer == 8)
+        {
+            visualizer.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            visualizer.SetActive(false);
+        }
     }
 }
