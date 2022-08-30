@@ -1373,6 +1373,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CustomButtons",
+            "id": "31e70389-0d90-4208-a720-74f1a141c96b",
+            "actions": [
+                {
+                    "name": "MainMenu",
+                    "type": "Button",
+                    "id": "ddb35ea5-83e8-4ab0-8ebf-a62afc663e94",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e6c6d758-b457-4eef-a362-06bf50509ba0",
+                    "path": "<XRController>/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MainMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
