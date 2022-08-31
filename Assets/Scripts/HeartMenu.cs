@@ -13,6 +13,7 @@ public class HeartMenu : MonoBehaviour
     public GameObject chestHeart;
     public RectTransform chestMenu;
     public RectTransform limbMenu;
+    public ECGScript ecgScreen;
     public Image ecgDisplay;
     public Sprite[] chestSprites;
     public Sprite[] limbSprites;
@@ -97,28 +98,30 @@ public class HeartMenu : MonoBehaviour
     }
     private void hideECGDisplay()
     {
-        ecgDisplay.gameObject.SetActive(false);
         toLimbSelectButton.gameObject.SetActive(false);
         toChestSelectButton.gameObject.SetActive(false);
     }
     public void ECGChestSelected(int num)
     {
         LeanTween.scale(panelTransform, new Vector3(0, 0), 0.5f).setEase(LeanTweenType.easeInBack);
-        ecgDisplay.gameObject.SetActive(true);
-        LeanTween.scale(ecgDisplay.rectTransform, new Vector3(1, 1, 1), 0.5f).setEaseOutBack();
         LeanTween.scale(toSelectLeadButton, new Vector3(0, 0, 1), .5f).setEaseOutBack();
 
+        ecgScreen.gameObject.SetActive(true);
+        ecgScreen.Show(true, num);
         ecgDisplay.sprite = chestSprites[num];
+        
         LeanTween.scale(chestMenu, new Vector3(0f, 0f, 1), 0.5f).setEaseOutBack().setOnComplete(ECGChestSelectedAfter);
     }
     public void ECGLimbSelected(int num)
     {
         LeanTween.scale(panelTransform, new Vector3(0, 0), 0.5f).setEase(LeanTweenType.easeInBack);
-        ecgDisplay.gameObject.SetActive(true);
         LeanTween.scale(ecgDisplay.rectTransform, new Vector3(1, 1, 1), 0.5f).setEaseOutBack();
         LeanTween.scale(toSelectLeadButton, new Vector3(0, 0, 1), .5f).setEaseOutBack();
 
+        ecgDisplay.gameObject.SetActive(true);
+        ecgScreen.Show(true, num);
         ecgDisplay.sprite = limbSprites[num];
+       
         LeanTween.scale(limbMenu, new Vector3(0f, 0f, 1), .5f).setEaseOutBack().setOnComplete(ECGLimbSelectedAfter);
     }
     private void ECGLimbSelectedAfter()
