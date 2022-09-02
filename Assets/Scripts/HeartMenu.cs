@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class HeartMenu : MonoBehaviour
 {
+    public RectTransform initialText;
     public RectTransform panelTransform;
     public RectTransform limbButton;
     public RectTransform chestButton;
@@ -29,6 +30,7 @@ public class HeartMenu : MonoBehaviour
         limbButton.transform.localScale = new Vector3(0, 0, 0);
         chestButton.transform.localScale = new Vector3(0, 0, 0);
         panelTransform.localScale = new Vector3(0, 0, 0);
+        initialText.localScale = new Vector3(1, 1, 1);
         limbHeart.transform.eulerAngles = new Vector3(305.817841f, 144.439285f, 337.68396f);
         chestHeart.transform.eulerAngles = new Vector3(305.0065f, 159.553055f, 333.873016f);
 
@@ -43,24 +45,42 @@ public class HeartMenu : MonoBehaviour
     {
         if (!clicked)
         {
-            startPosition();
+            limbHeart.SetActive(false);
+            chestHeart.SetActive(false);
+            LeanTween.scale(fullHeart, new Vector3(1.3f, 1.3f, 1.3f), 2.5f).setEaseOutBack().setOnComplete(firstStart);
+            LeanTween.move(fullHeart, new Vector3(1.5f, 0.5f, 2), 2.5f).setEaseOutBack();
             clicked = true;
         }
     }
+
+    private void firstStart()
+    {
+        LeanTween.scale(limbButton, new Vector3(1.0f, 1.0f, 1), 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(hideTillStart);
+        LeanTween.scale(chestButton, new Vector3(1.0f, 1.0f, 1), 0.5f).setEase(LeanTweenType.easeInBack);
+        LeanTween.scale(panelTransform, new Vector3(1f, .1f, 1), 0.5f).setEase(LeanTweenType.easeInBack);
+        LeanTween.scale(initialText, new Vector3(0, 0, 1), 0.5f).setEaseOutBack();
+        LeanTween.scale(limbMenu, new Vector3(0.0f, 0.0f, 1), 0.5f).setEaseOutBack();
+        LeanTween.scale(chestMenu, new Vector3(0.0f, 0.0f, 1), 0.5f).setEaseOutBack();
+        LeanTween.scale(toSelectLeadButton, new Vector3(0.0f, 0.0f, 1), 0.5f).setEaseOutBack();
+    }
+
     public void startPosition()
     {
         limbHeart.SetActive(false);
         chestHeart.SetActive(false);
-        LeanTween.scale(gameObject, new Vector3(0.002f, 0.002f, 0.002f), 1.5f).setEaseOutBack();
-        LeanTween.scale(fullHeart, new Vector3(1.3f, 1.3f, 1.3f), 1.5f).setOnComplete(hideTillStart).setEaseOutBack();
-        LeanTween.move(fullHeart, new Vector3(1.5f, 0.5f, 2), 1.5f).setEaseOutBack();
+
+        LeanTween.scale(fullHeart, new Vector3(1.3f, 1.3f, 1.3f), 0.5f).setEaseOutBack();
+        LeanTween.move(fullHeart, new Vector3(1.5f, 0.5f, 2), 0.5f).setEaseOutBack();
+        LeanTween.scale(gameObject, new Vector3(0.002f, 0.002f, 0.002f), 0.5f).setEaseOutBack();
+
         
         //LeanTween.move(chestHeart, new Vector3(-1.3f, 1f, 2), .5f).setEaseInBack();
         //LeanTween.move(limbHeart, new Vector3(1.2f, 1f, 2), .5f).setEaseInBack();
 
-        LeanTween.scale(limbButton, new Vector3(1.0f, 1.0f, 1), 0.5f).setEase(LeanTweenType.easeInBack);
+        LeanTween.scale(limbButton, new Vector3(1.0f, 1.0f, 1), 0.5f).setEase(LeanTweenType.easeInBack).setOnComplete(hideTillStart);
         LeanTween.scale(chestButton, new Vector3(1.0f, 1.0f, 1), 0.5f).setEase(LeanTweenType.easeInBack);
         LeanTween.scale(panelTransform, new Vector3(1f, .1f, 1), 0.5f).setEase(LeanTweenType.easeInBack);
+        LeanTween.scale(initialText, new Vector3(0, 0, 1), 0.5f).setEaseOutBack();
         LeanTween.scale(limbMenu, new Vector3(0.0f, 0.0f, 1), 0.5f).setEaseOutBack();
         LeanTween.scale(chestMenu, new Vector3(0.0f, 0.0f, 1), 0.5f).setEaseOutBack();
         LeanTween.scale(toSelectLeadButton, new Vector3(0.0f, 0.0f, 1), 0.5f).setEaseOutBack();
@@ -86,22 +106,24 @@ public class HeartMenu : MonoBehaviour
     }
     private void hide0()
     {
-        LeanTween.scale(limbButton, new Vector3(.0f, .0f, 1), 0.5f).setEase(LeanTweenType.easeInBack);
-        LeanTween.scale(chestButton, new Vector3(.0f, .0f, 1), 0.5f).setEase(LeanTweenType.easeInBack);
+        LeanTween.scale(limbButton, new Vector3(.0f, .0f, 1), 0.5f).setEase(LeanTweenType.easeOutBack);
+        LeanTween.scale(chestButton, new Vector3(.0f, .0f, 1), 0.5f).setEase(LeanTweenType.easeOutBack);
         LeanTween.scale(panelTransform, new Vector3(.5f, .5f, 1), 0.5f).setEase(LeanTweenType.easeInBack);
         toSelectLeadButton.gameObject.SetActive(true);
-        LeanTween.scale(toSelectLeadButton, new Vector3(1, 1, 1), .5f).setEaseOutBack();
-
     }
     public void limbSelected()
     {
         limbMenu.gameObject.SetActive(true);
         LeanTween.scale(limbMenu, new Vector3(0.5f, 0.5f, 1), 0.5f).setEaseOutBack();
+        LeanTween.scale(toSelectLeadButton, new Vector3(1, 1, 1), .5f).setEaseOutBack();
+
     }
     public void chestSelected()
     {
         chestMenu.gameObject.SetActive(true);
         LeanTween.scale(chestMenu, new Vector3(0.5f, 0.5f, 1), .5f).setEaseOutBack();
+        LeanTween.scale(toSelectLeadButton, new Vector3(1, 1, 1), .5f).setEaseOutBack();
+
     }
     public void returnToLimb()
     {
